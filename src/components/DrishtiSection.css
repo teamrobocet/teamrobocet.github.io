@@ -1,0 +1,147 @@
+.drishti-section {
+  padding: 100px 20px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000;
+  background-image: 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)),
+    url('../assets/textures/T3.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.drishti-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.drishti-logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
+  transition: transform 0.4s ease;
+}
+
+.drishti-logo:hover {
+  transform: scale(1.05) rotate(5deg);
+}
+
+.drishti-title {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+}
+
+.drishti-main-poster-wrap {
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 60px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.drishti-main-poster {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.drishti-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.drishti-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--glass-bg);
+  /* The T3.jpg background is inherited from .glass-panel */
+}
+
+.drishti-card-image-wrap {
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background-color: #000;
+}
+
+.drishti-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.drishti-card:hover .drishti-card-image {
+  transform: scale(1.03);
+}
+
+.drishti-card-content {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.drishti-btn {
+  width: 100%;
+  text-align: center;
+  border-color: rgba(255, 215, 0, 0.5); /* Gold tint for Drishti */
+  color: #fff;
+}
+
+.drishti-btn:hover {
+  background-color: rgba(255, 215, 0, 0.8);
+  color: #000;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+.drishti-btn-outline {
+  width: 100%;
+  text-align: center;
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+.drishti-btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .drishti-section {
+    padding: 60px 16px;
+  }
+  
+  .drishti-logo {
+    width: 90px;
+  }
+  
+  .drishti-grid {
+    gap: 24px;
+  }
+  
+  .drishti-card-content {
+    padding: 20px;
+  }
+}

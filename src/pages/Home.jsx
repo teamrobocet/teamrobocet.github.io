@@ -1,5 +1,6 @@
 import React from 'react';
 import Hero from '../components/Hero';
+import DrishtiSection from '../components/DrishtiSection';
 import About from '../components/About';
 import Events from '../components/Events';
 import Team from '../components/Team';
@@ -12,6 +13,7 @@ const Home = ({ isLoading }) => {
       <Hero isLoading={isLoading} />
       <div className="white-strip"></div>
       <About />
+      <DrishtiSection />
       <Events />
       
       <Team />

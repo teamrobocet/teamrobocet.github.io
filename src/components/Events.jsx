@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './Events.css';
 
-import workshopImg from '../assets/images/Workshopes.png';
-import competitionImg from '../assets/images/competetion.png';
+import workshopImg from '../assets/images/Workshopes_1.jpeg';
+import competitionImg from '../assets/images/Competetion_1.jpg';
 import projectImg from '../assets/images/Projects.png';
 import articleImg from '../assets/images/Article.png';
-import talkSessionImg from '../assets/images/Talksession.png';
+import talkSessionImg from '../assets/images/Talksession_1.jpeg';
 import achievementsImg from '../assets/images/Achievements.png';
 
 const Events = () => {
