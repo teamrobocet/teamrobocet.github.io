@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import heroVideo from '../assets/videos/Hero3.mp4';
-import heroVideoMob from '../assets/videos/Hero_mob.mp4';
 import loadingWebm from '../assets/videos/Loading.webm';
 import loadingMp4 from '../assets/videos/Loading.mp4';
 import './Preloader.css';

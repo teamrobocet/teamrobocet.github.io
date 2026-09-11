@@ -116,7 +116,7 @@ const Hero = ({ isLoading = false }) => {
     }
 
     imagesRef.current = loadedImages;
-  }, [drawFrame]);
+  }, [drawFrame, isDesktop]);
 
   // Handle Canvas Resize (ONLY ON DESKTOP)
   useEffect(() => {
@@ -136,7 +136,7 @@ const Hero = ({ isLoading = false }) => {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [drawFrame]);
+  }, [drawFrame, isDesktop]);
 
   // Butter-Smooth rAF Lerp Loop & Cursor Tracking (ONLY ON DESKTOP)
   useEffect(() => {
@@ -176,7 +176,7 @@ const Hero = ({ isLoading = false }) => {
       window.removeEventListener('mousemove', onMouseMove);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, [drawFrame]);
+  }, [drawFrame, isDesktop]);
 
   return (
     <section ref={heroRef} id="home" className="mainframe-hero relative w-full h-screen flex flex-col !justify-start pt-24 pb-10 md:!justify-center md:pt-0 md:pb-0 px-5 sm:px-8 md:px-10 overflow-hidden text-white">
