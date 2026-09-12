@@ -16,6 +16,8 @@
   padding: 12px 0;
   background: rgba(5, 5, 5, 0.85);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  overflow: visible !important;
+  border-radius: 0 !important;
 }
 
 .navbar-container {
