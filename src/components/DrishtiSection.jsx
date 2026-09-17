@@ -23,9 +23,9 @@ const DrishtiSection = () => {
       <div className="drishti-grid">
         {/* Robowar Card */}
         <div className="glass-panel drishti-card" data-aos="fade-right" data-aos-delay="100">
-          <div className="drishti-card-image-wrap">
+          <Link to="/drishti/robowar" className="drishti-card-image-wrap" style={{display: 'block'}}>
             <img src={rwPoster} alt="Robowar Event" className="drishti-card-image" />
-          </div>
+          </Link>
           <div className="drishti-card-content">
             <Link to="/drishti/robowar" className="btn-primary drishti-btn" style={{backgroundColor: '#FFD700', borderColor: '#FFD700', color: '#000'}}>Live Updates</Link>
             <a href="https://drive.google.com/file/d/1xK3w5vq8G0bN4-hbUbX42dED4URRibv-/" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn-outline" style={{marginTop: '10px'}}>Rulebook</a>
@@ -34,9 +34,9 @@ const DrishtiSection = () => {
 
         {/* Robosoccer Card */}
         <div className="glass-panel drishti-card" data-aos="fade-up" data-aos-delay="200">
-          <div className="drishti-card-image-wrap">
+          <Link to="/drishti/robosoccer" className="drishti-card-image-wrap" style={{display: 'block'}}>
             <img src={rsPoster} alt="Robosoccer Event" className="drishti-card-image" />
-          </div>
+          </Link>
           <div className="drishti-card-content">
             <Link to="/drishti/robosoccer" className="btn-primary drishti-btn" style={{backgroundColor: '#FFD700', borderColor: '#FFD700', color: '#000'}}>Live Updates</Link>
             <a href="https://drive.google.com/file/d/1xK3w5vq8G0bN4-hbUbX42dED4URRibv-/" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn-outline" style={{marginTop: '10px'}}>Rulebook</a>
@@ -45,9 +45,9 @@ const DrishtiSection = () => {
 
         {/* New Competition Card */}
         <div className="glass-panel drishti-card" data-aos="fade-left" data-aos-delay="300">
-          <div className="drishti-card-image-wrap">
+          <Link to="/drishti/robowar-15kg" className="drishti-card-image-wrap" style={{display: 'block'}}>
             <img src={rw1Poster} alt="Competition Event" className="drishti-card-image" />
-          </div>
+          </Link>
           <div className="drishti-card-content">
             <Link to="/drishti/robowar-15kg" className="btn-primary drishti-btn" style={{backgroundColor: '#FFD700', borderColor: '#FFD700', color: '#000'}}>Live Updates</Link>
             <a href="https://drive.google.com/file/d/1xK3w5vq8G0bN4-hbUbX42dED4URRibv-/" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn-outline" style={{marginTop: '10px'}}>Rulebook</a>
