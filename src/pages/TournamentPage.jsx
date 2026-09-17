@@ -4,6 +4,8 @@ import { db } from '../firebase';
 import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Users, Trophy, CheckCircle, Clock, PlayCircle } from 'lucide-react';
+import logoImg from '../assets/drishti/Dhristilogo.png';
+import titleImg from '../assets/drishti/Dhrishti.png';
 import './TournamentPage.css';
 
 const TournamentPage = () => {
@@ -79,11 +81,14 @@ const TournamentPage = () => {
         <Link to="/#drishti" className="back-link">
           <ArrowLeft size={20} /> Back to Drishti
         </Link>
+
+        <div className="drishti-brand">
+          <img src={logoImg} alt="Drishti Logo" className="drishti-page-logo" />
+          <img src={titleImg} alt="Drishti 26" className="drishti-page-title" />
+        </div>
+
         <div className="title-wrapper">
           <h1 className="tournament-title">{tournament?.name || 'Tournament'}</h1>
-          <span className={`status-badge ${tournament?.status?.toLowerCase().replace(' ', '-') || 'upcoming'}`}>
-            {tournament?.status || 'Upcoming'}
-          </span>
         </div>
         
         <div className="tabs">
