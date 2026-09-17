@@ -17,6 +17,9 @@ import Register from './pages/Register';
 import AdminLogin from './pages/AdminLogin';
 import ProtectedRoute from './components/ProtectedRoute';
 import ScrollToTop from './components/ScrollToTop';
+import TournamentPage from './pages/TournamentPage';
+import AdminTournamentList from './pages/AdminTournamentList';
+import AdminTournamentManage from './pages/AdminTournamentManage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -57,6 +60,19 @@ function App() {
               <Route path="/admin/achievements" element={
                 <ProtectedRoute>
                   <AdminAchievement />
+                </ProtectedRoute>
+              } />
+              
+              {/* Tournament Routes */}
+              <Route path="/drishti/:tournamentId" element={<TournamentPage />} />
+              <Route path="/admin/tournaments" element={
+                <ProtectedRoute>
+                  <AdminTournamentList />
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/tournaments/:tournamentId" element={
+                <ProtectedRoute>
+                  <AdminTournamentManage />
                 </ProtectedRoute>
               } />
             </Routes>

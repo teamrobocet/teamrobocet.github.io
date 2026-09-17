@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './DrishtiSection.css';
 import logoImg from '../assets/drishti/Dhristilogo.png';
 import titleImg from '../assets/drishti/Dhrishti.png';
@@ -27,7 +28,10 @@ const DrishtiSection = () => {
           </div>
           <div className="drishti-card-content">
             <a href="https://discover.snaptiqz.com/event/upinPsGhoMnPCvLPtz1Hh" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn">Register Now</a>
-            <a href="https://drive.google.com/file/d/1xK3w5vq8G0bN4-hbUbX42dED4URRibv-/" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn-outline">Rulebook</a>
+            <div style={{display:'flex', gap:'10px', marginTop:'10px'}}>
+              <a href="https://drive.google.com/file/d/1xK3w5vq8G0bN4-hbUbX42dED4URRibv-/" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn-outline" style={{flex:1}}>Rulebook</a>
+              <Link to="/drishti/robowar" className="btn-primary drishti-btn-outline" style={{flex:1, borderColor: '#00ffcc', color: '#00ffcc'}}>Live Status</Link>
+            </div>
           </div>
         </div>
 
@@ -38,7 +42,10 @@ const DrishtiSection = () => {
           </div>
           <div className="drishti-card-content">
             <a href="https://discover.snaptiqz.com/event/_7i_CVS3G0uet1apXPcE-" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn">Register Now</a>
-            <a href="https://drive.google.com/file/d/1xK3w5vq8G0bN4-hbUbX42dED4URRibv-/" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn-outline">Rulebook</a>
+            <div style={{display:'flex', gap:'10px', marginTop:'10px'}}>
+              <a href="https://drive.google.com/file/d/1xK3w5vq8G0bN4-hbUbX42dED4URRibv-/" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn-outline" style={{flex:1}}>Rulebook</a>
+              <Link to="/drishti/robosoccer" className="btn-primary drishti-btn-outline" style={{flex:1, borderColor: '#00ffcc', color: '#00ffcc'}}>Live Status</Link>
+            </div>
           </div>
         </div>
 
@@ -49,7 +56,10 @@ const DrishtiSection = () => {
           </div>
           <div className="drishti-card-content">
             <a href="https://discover.snaptiqz.com/event/-iPlyrSOHJd78zkLt9roj" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn">Register Now</a>
-            <a href="https://drive.google.com/file/d/1xK3w5vq8G0bN4-hbUbX42dED4URRibv-/" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn-outline">Rulebook</a>
+            <div style={{display:'flex', gap:'10px', marginTop:'10px'}}>
+              <a href="https://drive.google.com/file/d/1xK3w5vq8G0bN4-hbUbX42dED4URRibv-/" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn-outline" style={{flex:1}}>Rulebook</a>
+              <Link to="/drishti/robowar-15kg" className="btn-primary drishti-btn-outline" style={{flex:1, borderColor: '#00ffcc', color: '#00ffcc'}}>Live Status</Link>
+            </div>
           </div>
         </div>
       </div>

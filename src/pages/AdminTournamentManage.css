@@ -1,0 +1,97 @@
+.admin-tourney-manage {
+  padding: 100px 20px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.status-control {
+  padding: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-control h3 {
+  margin: 0;
+}
+
+.status-control select {
+  max-width: 300px;
+}
+
+.tm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.tm-section {
+  padding: 20px;
+}
+
+.section-header {
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: 10px;
+}
+
+.section-header h3 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.teams-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.team-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  padding: 12px 15px;
+  border-radius: 8px;
+}
+
+.matches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.match-admin-item {
+  background: rgba(255,255,255,0.05);
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.match-admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.score-editor {
+  background: rgba(0,0,0,0.5);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+@media (max-width: 900px) {
+  .tm-grid {
+    grid-template-columns: 1fr;
+  }
+}

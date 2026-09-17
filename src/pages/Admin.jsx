@@ -58,6 +58,12 @@ const Admin = () => {
       title: "Achievements",
       description: "Manage student and team accomplishments.",
       image: achievementsImg
+    },
+    {
+      id: "tournaments",
+      title: "Drishti Tournaments",
+      description: "Live fixtures, teams, and scores for Drishti.",
+      image: "https://images.unsplash.com/photo-1511516171575-de470f783ee1?auto=format&fit=crop&w=800&q=80"
     }
   ];
 
