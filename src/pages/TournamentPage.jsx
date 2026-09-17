@@ -143,11 +143,17 @@ const TournamentPage = () => {
                       </div>
                       <div className="match-teams">
                         <div className={`team ${match.scoreA > match.scoreB && match.status === 'Completed' ? 'winner' : ''}`}>
+                          {match.scoreA > match.scoreB && match.status === 'Completed' && (
+                            <div className="winner-tag">WINNER</div>
+                          )}
                           <span className="team-name">{match.teamAName}</span>
                           <span className="team-score">{match.scoreA ?? '-'}</span>
                         </div>
                         <div className="vs-divider">VS</div>
                         <div className={`team ${match.scoreB > match.scoreA && match.status === 'Completed' ? 'winner' : ''}`}>
+                          {match.scoreB > match.scoreA && match.status === 'Completed' && (
+                            <div className="winner-tag">WINNER</div>
+                          )}
                           <span className="team-name">{match.teamBName}</span>
                           <span className="team-score">{match.scoreB ?? '-'}</span>
                         </div>

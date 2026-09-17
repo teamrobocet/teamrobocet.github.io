@@ -220,9 +220,9 @@ const AdminTournamentManage = () => {
                   <div className="score-editor">
                     <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'10px'}}>
                       <span style={{flex: 1}}>{m.teamAName}</span>
-                      <input type="number" value={editScoreData.scoreA} onChange={e=>setEditScoreData({...editScoreData, scoreA: parseInt(e.target.value)})} style={{width:'50px', padding:'5px', textAlign:'center'}} />
+                      <input type="number" value={editScoreData.scoreA} onChange={e=>setEditScoreData({...editScoreData, scoreA: e.target.value === '' ? 0 : parseInt(e.target.value)})} style={{width:'50px', padding:'5px', textAlign:'center'}} />
                       <span style={{margin:'0 10px'}}>vs</span>
-                      <input type="number" value={editScoreData.scoreB} onChange={e=>setEditScoreData({...editScoreData, scoreB: parseInt(e.target.value)})} style={{width:'50px', padding:'5px', textAlign:'center'}} />
+                      <input type="number" value={editScoreData.scoreB} onChange={e=>setEditScoreData({...editScoreData, scoreB: e.target.value === '' ? 0 : parseInt(e.target.value)})} style={{width:'50px', padding:'5px', textAlign:'center'}} />
                       <span style={{flex: 1, textAlign:'right'}}>{m.teamBName}</span>
                     </div>
                     <div style={{display:'flex', gap:'10px'}}>
