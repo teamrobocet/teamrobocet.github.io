@@ -139,6 +139,7 @@ const AdminTournamentManage = () => {
       setEditingMatchId(null);
     } catch (err) {
       console.error(err);
+      alert("Failed to update score: " + err.message);
     }
   };
 
@@ -242,7 +243,7 @@ const AdminTournamentManage = () => {
                       <span style={{fontSize:'1.5rem', margin:'0 15px', color:'var(--accent-color)'}}>{m.scoreA} - {m.scoreB}</span>
                       <strong style={{flex: 1, textAlign:'right'}}>{m.teamBName}</strong>
                     </div>
-                    <button onClick={() => { setEditingMatchId(m.id); setEditScoreData({ scoreA: m.scoreA, scoreB: m.scoreB, status: m.status }); }} className="btn-outline small" style={{marginTop:'10px', width:'100%'}}>
+                    <button onClick={() => { setEditingMatchId(m.id); setEditScoreData({ scoreA: m.scoreA ?? 0, scoreB: m.scoreB ?? 0, status: m.status || 'Scheduled' }); }} className="btn-outline small" style={{marginTop:'10px', width:'100%'}}>
                       <Edit3 size={14} style={{marginRight:'5px'}}/> Update Score
                     </button>
                   </div>
