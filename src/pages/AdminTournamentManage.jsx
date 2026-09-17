@@ -133,8 +133,13 @@ const AdminTournamentManage = () => {
 
   const handleSaveScore = async (matchId) => {
     try {
-      await updateDoc(doc(db, 'drishti_matches', matchId), editScoreData);
-      const updatedMatches = matches.map(m => m.id === matchId ? { ...m, ...editScoreData } : m);
+      const finalScoreData = {
+        scoreA: parseInt(editScoreData.scoreA) || 0,
+        scoreB: parseInt(editScoreData.scoreB) || 0,
+        status: editScoreData.status
+      };
+      await updateDoc(doc(db, 'drishti_matches', matchId), finalScoreData);
+      const updatedMatches = matches.map(m => m.id === matchId ? { ...m, ...finalScoreData } : m);
       setMatches(sortMatches(updatedMatches));
       setEditingMatchId(null);
     } catch (err) {
@@ -221,9 +226,9 @@ const AdminTournamentManage = () => {
                   <div className="score-editor">
                     <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'10px'}}>
                       <span style={{flex: 1}}>{m.teamAName}</span>
-                      <input type="number" value={editScoreData.scoreA} onChange={e=>setEditScoreData({...editScoreData, scoreA: e.target.value === '' ? 0 : parseInt(e.target.value)})} style={{width:'50px', padding:'5px', textAlign:'center'}} />
+                      <input type="number" value={editScoreData.scoreA} onChange={e=>setEditScoreData({...editScoreData, scoreA: e.target.value})} className="builder-input" style={{width:'60px', padding:'5px', textAlign:'center', color: '#fff'}} />
                       <span style={{margin:'0 10px'}}>vs</span>
-                      <input type="number" value={editScoreData.scoreB} onChange={e=>setEditScoreData({...editScoreData, scoreB: e.target.value === '' ? 0 : parseInt(e.target.value)})} style={{width:'50px', padding:'5px', textAlign:'center'}} />
+                      <input type="number" value={editScoreData.scoreB} onChange={e=>setEditScoreData({...editScoreData, scoreB: e.target.value})} className="builder-input" style={{width:'60px', padding:'5px', textAlign:'center', color: '#fff'}} />
                       <span style={{flex: 1, textAlign:'right'}}>{m.teamBName}</span>
                     </div>
                     <div style={{display:'flex', gap:'10px'}}>
