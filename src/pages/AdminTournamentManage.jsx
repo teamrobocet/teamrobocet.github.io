@@ -14,11 +14,33 @@ const AdminTournamentManage = () => {
   
   const [matches, setMatches] = useState([]);
   const [isMatchModalOpen, setIsMatchModalOpen] = useState(false);
-  const [newMatch, setNewMatch] = useState({ teamA: '', teamB: '', round: 'League Match' });
+  const [newMatch, setNewMatch] = useState({ teamA: '', teamB: '', round: 'League Match', orderIndex: 1 });
   
   // For inline score editing
   const [editingMatchId, setEditingMatchId] = useState(null);
   const [editScoreData, setEditScoreData] = useState({ scoreA: 0, scoreB: 0, status: 'Scheduled' });
+
+  const sortMatches = (matchesArray) => {
+    return [...matchesArray].sort((a, b) => {
+      const statusPriority = { 'In Progress': 1, 'Scheduled': 2, 'Completed': 3 };
+      
+      const priorityA = statusPriority[a.status] || 4;
+      const priorityB = statusPriority[b.status] || 4;
+
+      if (priorityA !== priorityB) {
+        return priorityA - priorityB;
+      }
+
+      const orderA = parseInt(a.orderIndex) || 0;
+      const orderB = parseInt(b.orderIndex) || 0;
+
+      if (orderA !== orderB) {
+        return orderA - orderB;
+      }
+
+      return (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0);
+    });
+  };
 
   useEffect(() => {
     fetchData();
@@ -35,7 +57,7 @@ const AdminTournamentManage = () => {
 
       const matchesSnap = await getDocs(query(collection(db, 'drishti_matches'), where('tournamentId', '==', tournamentId)));
       const matchesData = matchesSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-      setMatches(matchesData.sort((a, b) => (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0)));
+      setMatches(sortMatches(matchesData));
     } catch (err) {
       console.error(err);
     }
@@ -95,14 +117,15 @@ const AdminTournamentManage = () => {
       scoreB: 0,
       status: 'Scheduled',
       round: newMatch.round,
+      orderIndex: parseInt(newMatch.orderIndex) || 1,
       createdAt: serverTimestamp()
     };
     
     try {
       const docRef = await addDoc(collection(db, 'drishti_matches'), matchData);
-      setMatches([{ id: docRef.id, ...matchData, createdAt: new Date() }, ...matches]);
+      setMatches(sortMatches([{ id: docRef.id, ...matchData, createdAt: { toMillis: () => Date.now() } }, ...matches]));
       setIsMatchModalOpen(false);
-      setNewMatch({ teamA: '', teamB: '', round: 'League Match' });
+      setNewMatch({ teamA: '', teamB: '', round: 'League Match', orderIndex: matches.length + 2 });
     } catch (err) {
       console.error(err);
     }
@@ -111,7 +134,8 @@ const AdminTournamentManage = () => {
   const handleSaveScore = async (matchId) => {
     try {
       await updateDoc(doc(db, 'drishti_matches', matchId), editScoreData);
-      setMatches(matches.map(m => m.id === matchId ? { ...m, ...editScoreData } : m));
+      const updatedMatches = matches.map(m => m.id === matchId ? { ...m, ...editScoreData } : m);
+      setMatches(sortMatches(updatedMatches));
       setEditingMatchId(null);
     } catch (err) {
       console.error(err);
@@ -237,6 +261,10 @@ const AdminTournamentManage = () => {
               <div className="form-group">
                 <label>Round</label>
                 <input type="text" value={newMatch.round} onChange={e=>setNewMatch({...newMatch, round: e.target.value})} placeholder="e.g. Quarter-Final 1" required/>
+              </div>
+              <div className="form-group">
+                <label>Order Index (Sort Order)</label>
+                <input type="number" value={newMatch.orderIndex} onChange={e=>setNewMatch({...newMatch, orderIndex: e.target.value})} placeholder="e.g. 1" required/>
               </div>
               <div className="form-group">
                 <label>Team A</label>

@@ -43,8 +43,20 @@ const TournamentPage = () => {
         const matchesQ = query(collection(db, 'drishti_matches'), where('tournamentId', '==', tournamentId));
         const matchesSnap = await getDocs(matchesQ);
         const matchesData = matchesSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-        // Sort matches by createdAt client side if needed, or by round
-        setMatches(matchesData.sort((a, b) => b.createdAt?.toMillis() - a.createdAt?.toMillis()));
+        const sortMatches = (matchesArray) => {
+          return [...matchesArray].sort((a, b) => {
+            const statusPriority = { 'In Progress': 1, 'Scheduled': 2, 'Completed': 3 };
+            const priorityA = statusPriority[a.status] || 4;
+            const priorityB = statusPriority[b.status] || 4;
+            if (priorityA !== priorityB) return priorityA - priorityB;
+            const orderA = parseInt(a.orderIndex) || 0;
+            const orderB = parseInt(b.orderIndex) || 0;
+            if (orderA !== orderB) return orderA - orderB;
+            return (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0);
+          });
+        };
+
+        setMatches(sortMatches(matchesData));
 
       } catch (err) {
         console.error("Error fetching tournament data", err);
