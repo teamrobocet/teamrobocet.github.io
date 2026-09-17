@@ -27,11 +27,8 @@ const DrishtiSection = () => {
             <img src={rwPoster} alt="Robowar Event" className="drishti-card-image" />
           </div>
           <div className="drishti-card-content">
-            <a href="https://discover.snaptiqz.com/event/upinPsGhoMnPCvLPtz1Hh" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn">Register Now</a>
-            <div style={{display:'flex', gap:'10px', marginTop:'10px'}}>
-              <a href="https://drive.google.com/file/d/1xK3w5vq8G0bN4-hbUbX42dED4URRibv-/" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn-outline" style={{flex:1}}>Rulebook</a>
-              <Link to="/drishti/robowar" className="btn-primary drishti-btn-outline" style={{flex:1, borderColor: '#00ffcc', color: '#00ffcc'}}>Live Status</Link>
-            </div>
+            <Link to="/drishti/robowar" className="btn-primary drishti-btn" style={{backgroundColor: '#00ffcc', borderColor: '#00ffcc', color: '#000'}}>Live Updates</Link>
+            <a href="https://drive.google.com/file/d/1xK3w5vq8G0bN4-hbUbX42dED4URRibv-/" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn-outline" style={{marginTop: '10px'}}>Rulebook</a>
           </div>
         </div>
 
@@ -41,11 +38,8 @@ const DrishtiSection = () => {
             <img src={rsPoster} alt="Robosoccer Event" className="drishti-card-image" />
           </div>
           <div className="drishti-card-content">
-            <a href="https://discover.snaptiqz.com/event/_7i_CVS3G0uet1apXPcE-" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn">Register Now</a>
-            <div style={{display:'flex', gap:'10px', marginTop:'10px'}}>
-              <a href="https://drive.google.com/file/d/1xK3w5vq8G0bN4-hbUbX42dED4URRibv-/" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn-outline" style={{flex:1}}>Rulebook</a>
-              <Link to="/drishti/robosoccer" className="btn-primary drishti-btn-outline" style={{flex:1, borderColor: '#00ffcc', color: '#00ffcc'}}>Live Status</Link>
-            </div>
+            <Link to="/drishti/robosoccer" className="btn-primary drishti-btn" style={{backgroundColor: '#00ffcc', borderColor: '#00ffcc', color: '#000'}}>Live Updates</Link>
+            <a href="https://drive.google.com/file/d/1xK3w5vq8G0bN4-hbUbX42dED4URRibv-/" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn-outline" style={{marginTop: '10px'}}>Rulebook</a>
           </div>
         </div>
 
@@ -55,11 +49,8 @@ const DrishtiSection = () => {
             <img src={rw1Poster} alt="Competition Event" className="drishti-card-image" />
           </div>
           <div className="drishti-card-content">
-            <a href="https://discover.snaptiqz.com/event/-iPlyrSOHJd78zkLt9roj" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn">Register Now</a>
-            <div style={{display:'flex', gap:'10px', marginTop:'10px'}}>
-              <a href="https://drive.google.com/file/d/1xK3w5vq8G0bN4-hbUbX42dED4URRibv-/" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn-outline" style={{flex:1}}>Rulebook</a>
-              <Link to="/drishti/robowar-15kg" className="btn-primary drishti-btn-outline" style={{flex:1, borderColor: '#00ffcc', color: '#00ffcc'}}>Live Status</Link>
-            </div>
+            <Link to="/drishti/robowar-15kg" className="btn-primary drishti-btn" style={{backgroundColor: '#00ffcc', borderColor: '#00ffcc', color: '#000'}}>Live Updates</Link>
+            <a href="https://drive.google.com/file/d/1xK3w5vq8G0bN4-hbUbX42dED4URRibv-/" target="_blank" rel="noopener noreferrer" className="btn-primary drishti-btn-outline" style={{marginTop: '10px'}}>Rulebook</a>
           </div>
         </div>
       </div>
