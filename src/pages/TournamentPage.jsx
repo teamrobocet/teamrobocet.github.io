@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { db } from '../firebase';
-import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
+import { doc, collection, query, where, onSnapshot } from 'firebase/firestore';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Users, Trophy, CheckCircle, Clock, PlayCircle } from 'lucide-react';
 import logoImg from '../assets/drishti/Dhristilogo.png';
@@ -17,54 +17,68 @@ const TournamentPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        // Fetch Tournament details
-        const tRef = doc(db, 'drishti_tournaments', tournamentId);
-        const tSnap = await getDoc(tRef);
+    setLoading(true);
+    
+    // Listeners
+    let unsubTournament;
+    let unsubTeams;
+    let unsubMatches;
+
+    const sortMatches = (matchesArray) => {
+      return [...matchesArray].sort((a, b) => {
+        const statusPriority = { 'In Progress': 1, 'Scheduled': 2, 'Completed': 3 };
+        const priorityA = statusPriority[a.status] || 4;
+        const priorityB = statusPriority[b.status] || 4;
+        if (priorityA !== priorityB) return priorityA - priorityB;
+        const orderA = parseInt(a.orderIndex) || 0;
+        const orderB = parseInt(b.orderIndex) || 0;
+        if (orderA !== orderB) return orderA - orderB;
+        return (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0);
+      });
+    };
+
+    try {
+      // 1. Real-time Tournament listener
+      const tRef = doc(db, 'drishti_tournaments', tournamentId);
+      unsubTournament = onSnapshot(tRef, (tSnap) => {
         if (tSnap.exists()) {
           setTournament({ id: tSnap.id, ...tSnap.data() });
         } else {
-          // If not created yet in DB, default it
           setTournament({
             id: tournamentId,
             name: tournamentId === 'robowar' ? 'Robo War' : tournamentId === 'robosoccer' ? 'Robo Soccer' : 'Line Follower',
             status: 'Upcoming'
           });
         }
+      });
 
-        // Fetch Teams
-        const teamsQ = query(collection(db, 'drishti_teams'), where('tournamentId', '==', tournamentId));
-        const teamsSnap = await getDocs(teamsQ);
+      // 2. Real-time Teams listener
+      const teamsQ = query(collection(db, 'drishti_teams'), where('tournamentId', '==', tournamentId));
+      unsubTeams = onSnapshot(teamsQ, (teamsSnap) => {
         setTeams(teamsSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+      });
 
-        // Fetch Matches
-        const matchesQ = query(collection(db, 'drishti_matches'), where('tournamentId', '==', tournamentId));
-        const matchesSnap = await getDocs(matchesQ);
+      // 3. Real-time Matches listener
+      const matchesQ = query(collection(db, 'drishti_matches'), where('tournamentId', '==', tournamentId));
+      unsubMatches = onSnapshot(matchesQ, (matchesSnap) => {
         const matchesData = matchesSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-        const sortMatches = (matchesArray) => {
-          return [...matchesArray].sort((a, b) => {
-            const statusPriority = { 'In Progress': 1, 'Scheduled': 2, 'Completed': 3 };
-            const priorityA = statusPriority[a.status] || 4;
-            const priorityB = statusPriority[b.status] || 4;
-            if (priorityA !== priorityB) return priorityA - priorityB;
-            const orderA = parseInt(a.orderIndex) || 0;
-            const orderB = parseInt(b.orderIndex) || 0;
-            if (orderA !== orderB) return orderA - orderB;
-            return (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0);
-          });
-        };
-
         setMatches(sortMatches(matchesData));
+        
+        // Once matches load, page is ready
+        setLoading(false);
+      });
 
-      } catch (err) {
-        console.error("Error fetching tournament data", err);
-      }
+    } catch (err) {
+      console.error("Error setting up live updates", err);
       setLoading(false);
-    };
+    }
 
-    fetchData();
+    // Cleanup listeners on unmount
+    return () => {
+      if (unsubTournament) unsubTournament();
+      if (unsubTeams) unsubTeams();
+      if (unsubMatches) unsubMatches();
+    };
   }, [tournamentId]);
 
   const getStatusIcon = (status) => {
